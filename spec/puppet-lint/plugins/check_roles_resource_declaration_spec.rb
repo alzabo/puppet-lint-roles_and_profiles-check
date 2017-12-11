@@ -81,6 +81,21 @@ class roles::foo {
       end
     end
 
+    context 'with profile inclusion - singular naming style' do
+      let(:code) do
+        <<-EOS
+class role::foo {
+  include profile::bar
+}
+        EOS
+      end
+
+      it 'should not detect any problems' do
+        expect(problems).to have(0).problems
+      end
+    end
+
+
     context 'with any class inclusion' do
       let(:code) do
         <<-EOS
